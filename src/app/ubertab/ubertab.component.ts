@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TabSwitchComponent } from './tab-switch/tab-switch.component';
-import {CustomTabComponent} from './custom-tab/custom-tab.component';
+import { CustomTabComponent } from './custom-tab/custom-tab.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @Component({
   selector: 'ubertab',
