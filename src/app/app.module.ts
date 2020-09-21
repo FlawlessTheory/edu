@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { UbertabComponent } from './ubertab/ubertab.component';
 import { TabSwitchComponent } from './ubertab/tab-switch/tab-switch.component';
 import { CustomTabComponent } from './ubertab/custom-tab/custom-tab.component';
+import { SidebarComponent } from './ubertab/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UbertabComponent,
     TabSwitchComponent,
-    CustomTabComponent
+    CustomTabComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -20,6 +22,6 @@ import { CustomTabComponent } from './ubertab/custom-tab/custom-tab.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [UbertabComponent, TabSwitchComponent, CustomTabComponent]
+  exports: [UbertabComponent, TabSwitchComponent, CustomTabComponent, SidebarComponent]
 })
 export class AppModule { }

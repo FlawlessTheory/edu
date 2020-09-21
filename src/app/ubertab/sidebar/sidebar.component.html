@@ -1,0 +1,18 @@
+<ng-container [ngSwitch]="currentTab">
+  <div *ngSwitchCase="'running-tab'">
+    <button title="Приостановить процесс">Приостановить процесс</button>
+    <button title="Изменить приоритеты для всех работ данного процесса">Изменить приоритеты для всех работ данного процесса</button>
+  </div>
+
+  <div *ngSwitchCase="'schemas-tab'">
+    <button>Создать</button>
+    <button disabled>Редактировать</button>
+    <button disabled>Загрузить</button>
+    <button disabled>Удалить</button>
+    <button disabled>Загрузить сборку</button>
+  </div>
+
+  <div *ngSwitchDefault>
+    <p>тут не на что смотреть</p>
+  </div>
+</ng-container>
