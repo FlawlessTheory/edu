@@ -1,52 +1,56 @@
-<div [ngSwitch]="currentTab">
+<div *ngIf="!formIsVisible">
+  <div [ngSwitch]="currentTab">
     <table *ngSwitchCase="'running-tab'">
       <caption>ЭКСТРЕМАЛЬНАЯ ТАБЛИЦА ФО ЗАПУЩЕННЫЕ БП</caption>
       <thead>
-        <tr>
-          <td>Состояние</td>
-          <td>Идентификатор</td>
-          <td>Время старта</td>
-          <td>Бизнес-ключ</td>
-        </tr>
+      <tr>
+        <td>Состояние</td>
+        <td>Идентификатор</td>
+        <td>Время старта</td>
+        <td>Бизнес-ключ</td>
+      </tr>
       </thead>
 
       <tbody>
-        <ng-container *ngFor="let item of runningArray">
-          <tr>
-            <td>{{item.state}}</td>
-            <td>{{item.ID}}</td>
-            <td>{{item.startTS.toLocaleString()}}</td>
-            <td>{{item.businessKey}}</td>
-          </tr>
-        </ng-container>
+      <ng-container *ngFor="let item of runningArray">
+        <tr>
+          <td>{{item.state}}</td>
+          <td>{{item.ID}}</td>
+          <td>{{item.startTS.toLocaleString()}}</td>
+          <td>{{item.businessKey}}</td>
+        </tr>
+      </ng-container>
       </tbody>
     </table>
 
-  <table *ngSwitchCase="'schemas-tab'">
-    <caption>ЭКСТРЕМАЛЬНАЯ ТАБЛИЦА ФО СХЕМЫ БП</caption>
+    <table *ngSwitchCase="'schemas-tab'">
+      <caption>ЭКСТРЕМАЛЬНАЯ ТАБЛИЦА ФО СХЕМЫ БП</caption>
 
-    <thead>
-    <tr>
-      <td>Состояние</td>
-      <td>Идентификатор</td>
-      <td>Название</td>
-      <td>Версия</td>
-      <td>Организация</td>
-    </tr>
-    </thead>
-
-    <tbody>
-    <ng-container *ngFor="let item of schemasArray">
+      <thead>
       <tr>
-        <td>{{item.state}}</td>
-        <td>{{item.ID}}</td>
-        <td>{{item.name}}</td>
-        <td>{{item.version}}</td>
-        <td>{{item.organization}}</td>
+        <td>Состояние</td>
+        <td>Идентификатор</td>
+        <td>Название</td>
+        <td>Версия</td>
+        <td>Организация</td>
       </tr>
-    </ng-container>
-    </tbody>
-  </table>
+      </thead>
 
-  <img *ngSwitchDefault src="https://media.tenor.com/images/71d974d8ca08c62330fc3ac86b485ba6/tenor.gif">
+      <tbody>
+      <ng-container *ngFor="let item of schemasArray">
+        <tr>
+          <td>{{item.state}}</td>
+          <td>{{item.ID}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.version}}</td>
+          <td>{{item.organization}}</td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+
+    <img *ngSwitchDefault src="https://media.tenor.com/images/71d974d8ca08c62330fc3ac86b485ba6/tenor.gif">
+  </div>
 </div>
+
+<schema-input-form *ngIf="formIsVisible" (newSchema)="onNewSchema($event)"></schema-input-form>

@@ -5,7 +5,7 @@
   </div>
 
   <div *ngSwitchCase="'schemas-tab'">
-    <button>Создать</button>
+    <button (click)="createSchemaButtonPressed()">Создать</button>
     <button disabled>Редактировать</button>
     <button disabled>Загрузить</button>
     <button disabled>Удалить</button>

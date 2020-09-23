@@ -6,6 +6,6 @@
 
 <hr>
 
-<sidebar [currentTab]="currentTab"></sidebar>
+<sidebar [currentTab]="currentTab" (onCreateSchemaButtonClicked)="showForm()"></sidebar>
 
-<custom-tab [currentTab]="currentTab"></custom-tab>
+<custom-tab [currentTab]="currentTab" [formIsVisible]="formIsVisible" (schemaAdded)="hideForm()"></custom-tab>

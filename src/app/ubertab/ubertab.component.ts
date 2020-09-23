@@ -10,12 +10,23 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 })
 export class UbertabComponent implements OnInit {
   currentTab: string;
+  formIsVisible: boolean;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.formIsVisible = false;
   }
+
   switchTab(tab: string): void {
     this.currentTab = tab;
+  }
+
+  showForm(): void {
+    this.formIsVisible = true;
+  }
+
+  hideForm(): void {
+    this.formIsVisible = false;
   }
 }
