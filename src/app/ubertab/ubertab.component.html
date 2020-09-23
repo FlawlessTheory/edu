@@ -6,6 +6,6 @@
 
 <hr>
 
-<sidebar [currentTab]="currentTab" (onCreateSchemaButtonClicked)="showForm($event)"></sidebar>
+<sidebar [currentTab]="currentTab" (onCreateSchemaButtonClicked)="showForm()"></sidebar>
 
-<custom-tab [currentTab]="currentTab" [formIsVisible]="formIsVisible" (schemaAdded)="hideForm($event)"></custom-tab>
+<custom-tab [currentTab]="currentTab" [formIsVisible]="formIsVisible" (schemaAdded)="hideForm()"></custom-tab>

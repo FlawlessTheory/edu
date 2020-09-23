@@ -22,11 +22,11 @@ export class UbertabComponent implements OnInit {
     this.currentTab = tab;
   }
 
-  showForm(useless: boolean): void {
+  showForm(): void {
     this.formIsVisible = true;
   }
 
-  hideForm(useless: boolean): void {
+  hideForm(): void {
     this.formIsVisible = false;
   }
 }
