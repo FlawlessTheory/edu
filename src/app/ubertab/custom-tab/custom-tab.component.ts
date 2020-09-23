@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BPrunning } from './bp-classes/bprunning';
 import { BPschema } from './bp-classes/bpschema';
 
@@ -10,8 +10,13 @@ import { BPschema } from './bp-classes/bpschema';
 export class CustomTabComponent implements OnInit {
   @Input()
   currentTab: string;
+
   @Input()
-  showForm: boolean;
+  formIsVisible: boolean;
+
+  @Output()
+  schemaAdded: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   runningArray: Array<BPrunning>;
   schemasArray: Array<BPschema>;
 
@@ -20,7 +25,10 @@ export class CustomTabComponent implements OnInit {
   ngOnInit(): void {
     this.runningArray = new Array<BPrunning>(new BPrunning('не существует', 'null', new Date(2020, 0, 1), 'что это вообще'), new BPrunning('отсутствует', 'undefined', new Date(2020, 11, 31), 'что это вообще'));
     this.schemasArray = new Array<BPschema>(new BPschema('существует в воображении', 'N0TH1NG', '?', 1, 'ООО "Рога и Копыта"'), new BPschema('придумал', 'V01D', '!', 9, 'ОАО "Вектор"'));
-    this.showForm = false;
   }
 
+  onNewSchema(newSchema: BPschema): void {
+    this.schemasArray.push(newSchema);
+    this.schemaAdded.emit(true);
+  }
 }

@@ -9,8 +9,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SchemaInputFormComponent implements OnInit {
   @Output()
-  OnNewSchema: EventEmitter<BPschema> = new EventEmitter<BPschema>();
+  newSchema: EventEmitter<BPschema> = new EventEmitter<BPschema>();
+
   schemaForm: FormGroup;
+
   constructor() {
     const schemaID = new FormControl('', [Validators.required, Validators.minLength(5)]);
     const schemaName = new FormControl('', [Validators.required, Validators.minLength(5)]);
@@ -27,7 +29,7 @@ export class SchemaInputFormComponent implements OnInit {
         const name = this.schemaForm.get('schemaName').value;
         const organization = this.schemaForm.get('schemaOrganization').value;
         const schema = new BPschema('прямо из киберпечи', ID, name, 1, organization);
-        this.OnNewSchema.emit(schema);
+        this.newSchema.emit(schema);
       }
       else {
         alert('чой-та неправильно');

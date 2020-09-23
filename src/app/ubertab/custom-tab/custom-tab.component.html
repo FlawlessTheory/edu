@@ -1,4 +1,4 @@
-<div *ngIf="!showForm">
+<div *ngIf="!formIsVisible">
   <div [ngSwitch]="currentTab">
     <table *ngSwitchCase="'running-tab'">
       <caption>ЭКСТРЕМАЛЬНАЯ ТАБЛИЦА ФО ЗАПУЩЕННЫЕ БП</caption>
@@ -53,4 +53,4 @@
   </div>
 </div>
 
-<schema-input-form *ngIf="showForm"></schema-input-form>
+<schema-input-form *ngIf="formIsVisible" (newSchema)="onNewSchema($event)"></schema-input-form>
