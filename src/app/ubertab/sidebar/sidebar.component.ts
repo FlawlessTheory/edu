@@ -10,14 +10,14 @@ export class SidebarComponent implements OnInit {
   currentTab: string;
 
   @Output()
-  onCreateSchemaButtonClicked: EventEmitter<boolean> = new EventEmitter<boolean>();
+  createProcessDefinitionButtonClicked: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  createSchemaButtonPressed(): void {
-    this.onCreateSchemaButtonClicked.emit(true);
+  onCreateProcessDefinitionButtonClicked(): void {
+    this.createProcessDefinitionButtonClicked.emit(true);
   }
 }

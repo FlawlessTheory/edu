@@ -8,7 +8,9 @@ import { UbertabComponent } from './ubertab/ubertab.component';
 import { TabSwitchComponent } from './ubertab/tab-switch/tab-switch.component';
 import { CustomTabComponent } from './ubertab/custom-tab/custom-tab.component';
 import { SidebarComponent } from './ubertab/sidebar/sidebar.component';
-import { SchemaInputFormComponent } from './ubertab/custom-tab/schema-input-form/schema-input-form.component';
+import { ProcessDefinitionInputFormComponent } from 'src/app/ubertab/custom-tab/process-instance-input-form/process-instance-input-form.component';
+import { SortOptionsComponent } from './ubertab/custom-tab/sort-options/sort-options.component';
+import { ButtonClickedNotifierService } from 'src/app/services/button-clicked-notifier.service';
 
 @NgModule({
   declarations: [
@@ -17,15 +19,16 @@ import { SchemaInputFormComponent } from './ubertab/custom-tab/schema-input-form
     TabSwitchComponent,
     CustomTabComponent,
     SidebarComponent,
-    SchemaInputFormComponent
+    ProcessDefinitionInputFormComponent,
+    SortOptionsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ButtonClickedNotifierService],
   bootstrap: [AppComponent],
-  exports: [UbertabComponent, TabSwitchComponent, CustomTabComponent, SidebarComponent, SchemaInputFormComponent]
+  exports: [UbertabComponent, TabSwitchComponent, CustomTabComponent, SidebarComponent, ProcessDefinitionInputFormComponent]
 })
 export class AppModule { }

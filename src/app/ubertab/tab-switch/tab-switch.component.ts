@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ButtonClickedNotifierService } from 'src/app/services/button-clicked-notifier.service';
 
 @Component({
   selector: 'tab-switch',
@@ -6,15 +7,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./tab-switch.component.css']
 })
 export class TabSwitchComponent implements OnInit {
-  @Output()
-  buttonClicked: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private buttonClickedNotifierService: ButtonClickedNotifierService) { }
 
   ngOnInit(): void {
   }
 
   onButtonClicked(button: string): void {
-    this.buttonClicked.emit(button);
+    this.buttonClickedNotifierService.onButtonClicked(button);
   }
 }
