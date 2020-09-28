@@ -1,25 +1,19 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ButtonClickedNotifierService } from 'src/app/services/button-clicked-notifier.service';
+import { TabSwitchService } from 'src/app/services/tab-switch.service';
 
 @Component({
   selector: 'ubertab',
   templateUrl: './ubertab.component.html',
-  styleUrls: ['./ubertab.component.css']
+  styleUrls: ['./ubertab.component.css'],
+  providers: [TabSwitchService]
 })
 export class UbertabComponent implements OnInit, OnDestroy {
   currentTab: string;
   formIsVisible: boolean;
 
-  constructor(private buttonClickedNotifierService: ButtonClickedNotifierService) {
-    this.buttonClickedNotifierService.buttonClicked.subscribe((payload: string) => {
-      switch (payload) {
-        case 'instance-tab':
-          this.switchTab(payload);
-          break;
-        case 'definition-tab':
-          this.switchTab(payload);
-          break;
-      }
+  constructor(private tabSwitchService: TabSwitchService) {
+    this.tabSwitchService.tabSwitched.subscribe((tab: string) => {
+      this.currentTab = tab;
     });
   }
 
@@ -28,11 +22,7 @@ export class UbertabComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.buttonClickedNotifierService.buttonClicked.unsubscribe();
-  }
-
-  switchTab(tab: string): void {
-    this.currentTab = tab;
+    this.tabSwitchService.tabSwitched.unsubscribe();
   }
 
   showForm(): void {

@@ -10,7 +10,6 @@ import { CustomTabComponent } from './ubertab/custom-tab/custom-tab.component';
 import { SidebarComponent } from './ubertab/sidebar/sidebar.component';
 import { ProcessDefinitionInputFormComponent } from 'src/app/ubertab/custom-tab/process-instance-input-form/process-instance-input-form.component';
 import { SortOptionsComponent } from './ubertab/custom-tab/sort-options/sort-options.component';
-import { ButtonClickedNotifierService } from 'src/app/services/button-clicked-notifier.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +26,7 @@ import { ButtonClickedNotifierService } from 'src/app/services/button-clicked-no
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [ButtonClickedNotifierService],
+  providers: [],
   bootstrap: [AppComponent],
   exports: [UbertabComponent, TabSwitchComponent, CustomTabComponent, SidebarComponent, ProcessDefinitionInputFormComponent]
 })

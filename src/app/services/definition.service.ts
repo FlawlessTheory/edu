@@ -12,18 +12,22 @@ export class DefinitionService {
 
   sort(processDefinitionArray: Array<ProcessDefinition>, option: string): void {
     processDefinitionArray.sort((a, b) => {
+      const comparator = (firstString: string, secondString: string) => {
+        return firstString.localeCompare(secondString);
+      };
+
       switch (option) {
         case 'state':
-          return (a.state < b.state) ? -1 : (a.state > b.state) ? 1 : 0;
+          return comparator(a.state, b.state);
 
         case 'ID':
-          return (a.ID > b.ID) ? -1 : (a.ID > b.ID) ? 1 : 0;
+          return comparator(a.ID, b.ID);
 
         case 'name':
-          return (a.name > b.name) ? -1 : (a.name > b.name) ? 1 : 0;
+          return comparator(a.name, b.name);
 
         case 'organization':
-          return (a.organization > b.organization) ? -1 : (a.organization > b.organization) ? 1 : 0;
+          return comparator(a.organization, b.organization);
       }
     });
   }

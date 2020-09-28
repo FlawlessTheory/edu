@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ButtonClickedNotifierService } from 'src/app/services/button-clicked-notifier.service';
+import { TabSwitchService } from 'src/app/services/tab-switch.service';
 
 @Component({
   selector: 'tab-switch',
@@ -8,12 +8,12 @@ import { ButtonClickedNotifierService } from 'src/app/services/button-clicked-no
 })
 export class TabSwitchComponent implements OnInit {
 
-  constructor(private buttonClickedNotifierService: ButtonClickedNotifierService) { }
+  constructor(private tabSwitchService: TabSwitchService) { }
 
   ngOnInit(): void {
   }
 
-  onButtonClicked(button: string): void {
-    this.buttonClickedNotifierService.onButtonClicked(button);
+  onButtonClicked(tab: string): void {
+    this.tabSwitchService.onTabSwitched(tab);
   }
 }
