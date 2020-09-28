@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProcessInstance } from 'src/app/models/process/process-instance';
 import { ProcessDefinition } from 'src/app/models/process/process-definition';
 import { DefinitionService } from 'src/app/services/definition.service';
+import { TabSwitchService } from 'src/app/services/tab-switch.service';
+import { InputFormService } from 'src/app/services/input-form.service';
 
 @Component({
   selector: 'custom-tab',
@@ -10,19 +12,17 @@ import { DefinitionService } from 'src/app/services/definition.service';
   providers: [DefinitionService]
 })
 export class CustomTabComponent implements OnInit {
-  @Input()
   currentTab: string;
-
-  @Input()
   formIsVisible: boolean;
-
-  @Output()
-  processDefinitionAdded: EventEmitter<boolean> = new EventEmitter<boolean>();
-
   processInstanceArray: Array<ProcessInstance>;
   processDefinitionArray: Array<ProcessDefinition>;
 
-  constructor(private definitionService: DefinitionService) { }
+  constructor(private definitionService: DefinitionService,
+              private tabSwitchService: TabSwitchService,
+              private inputFormService: InputFormService) {
+    this.tabSwitchService.tabSwitched.subscribe((tab: string) => this.currentTab = tab );
+    this.inputFormService.showForm.subscribe((show: boolean) => this.formIsVisible = show );
+  }
 
   ngOnInit(): void {
     this.processInstanceArray = new Array<ProcessInstance>(new ProcessInstance('не существует', 'null', new Date(2020, 0, 1), 'что это вообще'), new ProcessInstance('отсутствует', 'undefined', new Date(2020, 11, 31), 'что это вообще'));
@@ -31,7 +31,7 @@ export class CustomTabComponent implements OnInit {
 
   onNewProcessDefinition(processDefinition: ProcessDefinition): void {
     this.definitionService.add(this.processDefinitionArray, processDefinition);
-    this.processDefinitionAdded.emit(true);
+    this.inputFormService.onProcessDefinitionCreated();
   }
 
   sortProcessDefinitions(option: string): void {

@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProcessDefinition } from 'src/app/models/process/process-definition';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TabSwitchService } from 'src/app/services/tab-switch.service';
+import { InputFormService } from 'src/app/services/input-form.service';
 
 @Component({
   selector: 'process-definition-input-form',

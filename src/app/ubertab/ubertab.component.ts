@@ -1,35 +1,20 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TabSwitchService } from 'src/app/services/tab-switch.service';
+import { InputFormService } from 'src/app/services/input-form.service';
 
 @Component({
   selector: 'ubertab',
   templateUrl: './ubertab.component.html',
   styleUrls: ['./ubertab.component.css'],
-  providers: [TabSwitchService]
+  providers: [TabSwitchService, InputFormService]
 })
 export class UbertabComponent implements OnInit, OnDestroy {
-  currentTab: string;
-  formIsVisible: boolean;
 
-  constructor(private tabSwitchService: TabSwitchService) {
-    this.tabSwitchService.tabSwitched.subscribe((tab: string) => {
-      this.currentTab = tab;
-    });
-  }
+  constructor() { }
 
   ngOnInit(): void {
-    this.formIsVisible = false;
   }
 
   ngOnDestroy(): void {
-    this.tabSwitchService.tabSwitched.unsubscribe();
-  }
-
-  showForm(): void {
-    this.formIsVisible = true;
-  }
-
-  hideForm(): void {
-    this.formIsVisible = false;
   }
 }
