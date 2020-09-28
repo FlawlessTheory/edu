@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TabSwitchService } from 'src/app/services/tab-switch.service';
 import { InputFormService } from 'src/app/services/input-form.service';
 
@@ -8,13 +8,10 @@ import { InputFormService } from 'src/app/services/input-form.service';
   styleUrls: ['./ubertab.component.css'],
   providers: [TabSwitchService, InputFormService]
 })
-export class UbertabComponent implements OnInit, OnDestroy {
+export class UbertabComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  ngOnDestroy(): void {
   }
 }

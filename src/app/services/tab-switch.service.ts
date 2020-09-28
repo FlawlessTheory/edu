@@ -9,7 +9,7 @@ export class TabSwitchService {
 
   constructor() { }
 
-  onTabSwitched(tab: string): void {
+  switchTab(tab: string): void {
     this.tabSwitched.emit(tab);
   }
 

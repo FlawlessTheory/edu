@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProcessInstance } from 'src/app/models/process/process-instance';
 import { ProcessDefinition } from 'src/app/models/process/process-definition';
 import { DefinitionService } from 'src/app/services/definition.service';
@@ -11,7 +11,7 @@ import { InputFormService } from 'src/app/services/input-form.service';
   styleUrls: ['./custom-tab.component.css'],
   providers: [DefinitionService]
 })
-export class CustomTabComponent implements OnInit {
+export class CustomTabComponent implements OnInit, OnDestroy {
   currentTab: string;
   formIsVisible: boolean;
   processInstanceArray: Array<ProcessInstance>;
@@ -27,6 +27,11 @@ export class CustomTabComponent implements OnInit {
   ngOnInit(): void {
     this.processInstanceArray = new Array<ProcessInstance>(new ProcessInstance('не существует', 'null', new Date(2020, 0, 1), 'что это вообще'), new ProcessInstance('отсутствует', 'undefined', new Date(2020, 11, 31), 'что это вообще'));
     this.processDefinitionArray = new Array<ProcessDefinition>(new ProcessDefinition('существует в воображении', 'N0TH1NG', '?', 1, 'ООО "Рога и Копыта"'), new ProcessDefinition('придумал', 'V01D', '!', 9, 'ОАО "Вектор"'));
+  }
+
+  ngOnDestroy(): void {
+    this.tabSwitchService.tabSwitched.unsubscribe();
+    this.inputFormService.showForm.unsubscribe();
   }
 
   onNewProcessDefinition(processDefinition: ProcessDefinition): void {

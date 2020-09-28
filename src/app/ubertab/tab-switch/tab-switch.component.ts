@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TabSwitchService } from 'src/app/services/tab-switch.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { TabSwitchService } from 'src/app/services/tab-switch.service';
   templateUrl: './tab-switch.component.html',
   styleUrls: ['./tab-switch.component.css']
 })
-export class TabSwitchComponent implements OnInit {
+export class TabSwitchComponent implements OnInit, OnDestroy {
   isLocked: boolean;
 
   constructor(private tabSwitchService: TabSwitchService) {
@@ -17,7 +17,11 @@ export class TabSwitchComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnDestroy(): void {
+    this.tabSwitchService.tabLocked.unsubscribe();
+  }
+
   onButtonClicked(tab: string): void {
-    this.tabSwitchService.onTabSwitched(tab);
+    this.tabSwitchService.switchTab(tab);
   }
 }

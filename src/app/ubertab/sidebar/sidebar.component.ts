@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TabSwitchService } from 'src/app/services/tab-switch.service';
 import { InputFormService } from 'src/app/services/input-form.service';
 
@@ -7,7 +7,7 @@ import { InputFormService } from 'src/app/services/input-form.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
   currentTab: string;
 
   constructor(private tabSwitchService: TabSwitchService,
@@ -17,6 +17,10 @@ export class SidebarComponent implements OnInit {
 
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this.tabSwitchService.tabSwitched.unsubscribe();
   }
 
   onCreateProcessDefinitionButtonClicked(): void {
