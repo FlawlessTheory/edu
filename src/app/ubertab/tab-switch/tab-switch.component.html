@@ -1,2 +1,2 @@
-<button (click)="onButtonClicked('instance-tab')">Запущенные БП</button>
-<button (click)="onButtonClicked('definition-tab')">Схемы БП</button>
+<button [disabled]="isLocked" (click)="onButtonClicked('instance-tab')">Запущенные БП</button>
+<button [disabled]="isLocked" (click)="onButtonClicked('definition-tab')">Схемы БП</button>

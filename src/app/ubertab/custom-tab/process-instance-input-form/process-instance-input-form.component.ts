@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProcessDefinition } from 'src/app/models/process/process-definition';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TabSwitchService } from 'src/app/services/tab-switch.service';
 
 @Component({
   selector: 'process-definition-input-form',
@@ -13,7 +14,7 @@ export class ProcessDefinitionInputFormComponent implements OnInit {
 
   formGroup: FormGroup;
 
-  constructor() {
+  constructor(private tabSwitchService: TabSwitchService) {
     const ID = new FormControl('', [Validators.required, Validators.minLength(5)]);
     const name = new FormControl('', [Validators.required, Validators.minLength(5)]);
     const organization = new FormControl('');
@@ -30,6 +31,7 @@ export class ProcessDefinitionInputFormComponent implements OnInit {
         const organization = this.formGroup.get('organization').value;
         const processDefinition = new ProcessDefinition('прямо из киберпечи', ID, name, 1, organization);
         this.newProcessDefinition.emit(processDefinition);
+        this.tabSwitchService.unlockCurrentTab();
       }
       else {
         alert('чой-та неправильно');

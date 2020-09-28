@@ -7,8 +7,12 @@ import { TabSwitchService } from 'src/app/services/tab-switch.service';
   styleUrls: ['./tab-switch.component.css']
 })
 export class TabSwitchComponent implements OnInit {
+  isLocked: boolean;
 
-  constructor(private tabSwitchService: TabSwitchService) { }
+  constructor(private tabSwitchService: TabSwitchService) {
+    this.isLocked = false;
+    this.tabSwitchService.tabLocked.subscribe((isLocked: boolean) => this.isLocked = isLocked );
+  }
 
   ngOnInit(): void {
   }

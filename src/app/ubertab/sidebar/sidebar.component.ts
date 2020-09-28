@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { TabSwitchService } from 'src/app/services/tab-switch.service';
 
 @Component({
   selector: 'sidebar',
@@ -12,12 +13,14 @@ export class SidebarComponent implements OnInit {
   @Output()
   createProcessDefinitionButtonClicked: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private tabSwitchService: TabSwitchService) { }
+
 
   ngOnInit(): void {
   }
 
   onCreateProcessDefinitionButtonClicked(): void {
     this.createProcessDefinitionButtonClicked.emit(true);
+    this.tabSwitchService.lockCurrentTab();
   }
 }
