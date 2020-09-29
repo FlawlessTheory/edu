@@ -10,6 +10,9 @@ import { CustomTabComponent } from './ubertab/custom-tab/custom-tab.component';
 import { SidebarComponent } from './ubertab/sidebar/sidebar.component';
 import { ProcessDefinitionInputFormComponent } from 'src/app/ubertab/custom-tab/process-instance-input-form/process-instance-input-form.component';
 import { SortOptionsComponent } from './ubertab/custom-tab/sort-options/sort-options.component';
+import { TabSwitchService } from 'src/app/services/tab-switch.service';
+import { ProcessDefinitionStoreService } from 'src/app/services/process-definition-store.service';
+import { ProcessInstanceStoreService } from 'src/app/services/process-instance-store.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,7 @@ import { SortOptionsComponent } from './ubertab/custom-tab/sort-options/sort-opt
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [TabSwitchService, ProcessDefinitionStoreService, ProcessInstanceStoreService],
   bootstrap: [AppComponent],
   exports: [UbertabComponent, TabSwitchComponent, CustomTabComponent, SidebarComponent, ProcessDefinitionInputFormComponent]
 })

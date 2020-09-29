@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { TabSwitchService } from 'src/app/services/tab-switch.service';
-import { InputFormService } from 'src/app/services/input-form.service';
+import { ProcessDefinitionService } from 'src/app/services/process-definition.service';
+import { ProcessInstanceService } from 'src/app/services/process-instance.service';
 
 @Component({
   selector: 'ubertab',
   templateUrl: './ubertab.component.html',
   styleUrls: ['./ubertab.component.css'],
-  providers: [TabSwitchService, InputFormService]
+  providers: [ProcessDefinitionService, ProcessInstanceService]
 })
 export class UbertabComponent implements OnInit {
 

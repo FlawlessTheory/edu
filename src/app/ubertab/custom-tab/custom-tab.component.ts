@@ -1,45 +1,45 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProcessInstance } from 'src/app/models/process/process-instance';
 import { ProcessDefinition } from 'src/app/models/process/process-definition';
-import { DefinitionService } from 'src/app/services/definition.service';
+import { ProcessDefinitionService } from 'src/app/services/process-definition.service';
 import { TabSwitchService } from 'src/app/services/tab-switch.service';
-import { InputFormService } from 'src/app/services/input-form.service';
+import { Observable } from 'rxjs';
+import { ProcessInstanceService } from 'src/app/services/process-instance.service';
 
 @Component({
   selector: 'custom-tab',
   templateUrl: './custom-tab.component.html',
-  styleUrls: ['./custom-tab.component.css'],
-  providers: [DefinitionService]
+  styleUrls: ['./custom-tab.component.css']
 })
 export class CustomTabComponent implements OnInit, OnDestroy {
   currentTab: string;
   formIsVisible: boolean;
-  processInstanceArray: Array<ProcessInstance>;
-  processDefinitionArray: Array<ProcessDefinition>;
+  processInstanceArray: Observable<ProcessInstance[]>;
+  processDefinitionArray: Observable<ProcessDefinition[]>;
 
-  constructor(private definitionService: DefinitionService,
-              private tabSwitchService: TabSwitchService,
-              private inputFormService: InputFormService) {
-    this.tabSwitchService.tabSwitched.subscribe((tab: string) => this.currentTab = tab );
-    this.inputFormService.showForm.subscribe((show: boolean) => this.formIsVisible = show );
+  constructor(private definitionService: ProcessDefinitionService,
+              private instanceService: ProcessInstanceService,
+              private tabSwitchService: TabSwitchService) {
+    this.tabSwitchService.currentTab$.subscribe((tab: string) => this.currentTab = tab);
+
+    this.processInstanceArray = this.instanceService.get();
+    this.definitionService.inputFormOpened$.subscribe((val: boolean) => this.formIsVisible = val);
+
+    this.processDefinitionArray = this.definitionService.get();
   }
 
-  ngOnInit(): void {
-    this.processInstanceArray = new Array<ProcessInstance>(new ProcessInstance('не существует', 'null', new Date(2020, 0, 1), 'что это вообще'), new ProcessInstance('отсутствует', 'undefined', new Date(2020, 11, 31), 'что это вообще'));
-    this.processDefinitionArray = new Array<ProcessDefinition>(new ProcessDefinition('существует в воображении', 'N0TH1NG', '?', 1, 'ООО "Рога и Копыта"'), new ProcessDefinition('придумал', 'V01D', '!', 9, 'ОАО "Вектор"'));
-  }
+  ngOnInit(): void { }
 
   ngOnDestroy(): void {
-    this.tabSwitchService.tabSwitched.unsubscribe();
-    this.inputFormService.showForm.unsubscribe();
+    this.tabSwitchService.currentTab$.unsubscribe();
+    this.definitionService.inputFormOpened$.unsubscribe();
   }
 
-  onNewProcessDefinition(processDefinition: ProcessDefinition): void {
-    this.definitionService.add(this.processDefinitionArray, processDefinition);
-    this.inputFormService.onProcessDefinitionCreated();
+  addProcessDefinition(processDefinition: ProcessDefinition): void {
+    this.processDefinitionArray = this.definitionService.add(processDefinition);
   }
 
   sortProcessDefinitions(option: string): void {
-    this.definitionService.sort(this.processDefinitionArray, option);
+    this.processDefinitionArray = this.definitionService.sort(option);
   }
 }

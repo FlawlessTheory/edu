@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TabSwitchService } from 'src/app/services/tab-switch.service';
-import { InputFormService } from 'src/app/services/input-form.service';
+import { ProcessDefinitionService } from 'src/app/services/process-definition.service';
 
 @Component({
   selector: 'sidebar',
@@ -10,9 +10,8 @@ import { InputFormService } from 'src/app/services/input-form.service';
 export class SidebarComponent implements OnInit, OnDestroy {
   currentTab: string;
 
-  constructor(private tabSwitchService: TabSwitchService,
-              private inputFormService: InputFormService) {
-    this.tabSwitchService.tabSwitched.subscribe((tab: string) => this.currentTab = tab );
+  constructor(private tabSwitchService: TabSwitchService, private processDefinitionService: ProcessDefinitionService) {
+    this.tabSwitchService.currentTab$.subscribe((tab: string) => this.currentTab = tab );
   }
 
 
@@ -20,11 +19,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.tabSwitchService.tabSwitched.unsubscribe();
+    this.tabSwitchService.currentTab$.unsubscribe();
   }
 
   onCreateProcessDefinitionButtonClicked(): void {
     this.tabSwitchService.lockCurrentTab();
-    this.inputFormService.onCreateButtonClicked();
+    this.processDefinitionService.showInputForm();
   }
 }

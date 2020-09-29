@@ -1,8 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProcessDefinition } from 'src/app/models/process/process-definition';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TabSwitchService } from 'src/app/services/tab-switch.service';
-import { InputFormService } from 'src/app/services/input-form.service';
 
 @Component({
   selector: 'process-definition-input-form',
@@ -11,11 +9,11 @@ import { InputFormService } from 'src/app/services/input-form.service';
 })
 export class ProcessDefinitionInputFormComponent implements OnInit {
   @Output()
-  newProcessDefinition: EventEmitter<ProcessDefinition> = new EventEmitter<ProcessDefinition>();
+  definitionCreated: EventEmitter<ProcessDefinition> = new EventEmitter<ProcessDefinition>();
 
   formGroup: FormGroup;
 
-  constructor(private tabSwitchService: TabSwitchService) {
+  constructor() {
     const ID = new FormControl('', [Validators.required, Validators.minLength(5)]);
     const name = new FormControl('', [Validators.required, Validators.minLength(5)]);
     const organization = new FormControl('');
@@ -31,8 +29,8 @@ export class ProcessDefinitionInputFormComponent implements OnInit {
         const name = this.formGroup.get('name').value;
         const organization = this.formGroup.get('organization').value;
         const processDefinition = new ProcessDefinition('прямо из киберпечи', ID, name, 1, organization);
-        this.newProcessDefinition.emit(processDefinition);
-        this.tabSwitchService.unlockCurrentTab();
+
+        this.definitionCreated.emit(processDefinition);
       }
       else {
         alert('чой-та неправильно');

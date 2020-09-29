@@ -12,7 +12,7 @@
       </thead>
 
       <tbody>
-      <ng-container *ngFor="let item of processInstanceArray">
+      <ng-container *ngFor="let item of processInstanceArray | async">
         <tr>
           <td>{{item.state}}</td>
           <td>{{item.ID}}</td>
@@ -40,7 +40,7 @@
         </thead>
 
         <tbody>
-        <ng-container *ngFor="let item of processDefinitionArray">
+        <ng-container *ngFor="let item of processDefinitionArray | async">
           <tr>
             <td>{{item.state}}</td>
             <td>{{item.ID}}</td>
@@ -57,4 +57,5 @@
   </div>
 </div>
 
-<process-definition-input-form *ngIf="formIsVisible" (newProcessDefinition)="onNewProcessDefinition($event)"></process-definition-input-form>
+<process-definition-input-form *ngIf="formIsVisible" (definitionCreated)="addProcessDefinition($event)">
+</process-definition-input-form>

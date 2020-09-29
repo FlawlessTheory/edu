@@ -10,15 +10,14 @@ export class TabSwitchComponent implements OnInit, OnDestroy {
   isLocked: boolean;
 
   constructor(private tabSwitchService: TabSwitchService) {
-    this.isLocked = false;
-    this.tabSwitchService.tabLocked.subscribe((isLocked: boolean) => this.isLocked = isLocked );
+    this.tabSwitchService.isLocked$.subscribe((isLocked: boolean) => this.isLocked = isLocked );
   }
 
   ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
-    this.tabSwitchService.tabLocked.unsubscribe();
+    this.tabSwitchService.isLocked$.unsubscribe();
   }
 
   onButtonClicked(tab: string): void {

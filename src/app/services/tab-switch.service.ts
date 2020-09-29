@@ -1,23 +1,22 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TabSwitchService {
-  tabSwitched = new EventEmitter<string>();
-  tabLocked = new EventEmitter<boolean>();
+  currentTab$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  isLocked$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor() { }
 
   switchTab(tab: string): void {
-    this.tabSwitched.emit(tab);
+    this.currentTab$.next(tab);
   }
 
   lockCurrentTab(): void {
-    this.tabLocked.emit(true);
+    this.isLocked$.next(true);
   }
 
   unlockCurrentTab(): void {
-    this.tabLocked.emit(false);
+    this.isLocked$.next(false);
   }
 }
