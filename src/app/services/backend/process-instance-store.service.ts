@@ -8,8 +8,8 @@ import { from, Observable } from 'rxjs';
 export class ProcessInstanceStoreService {
 
   private processInstanceArray: ProcessInstance[] = [
-    new ProcessInstance('не существует', 'null', new Date(2020, 0, 1), 'что это вообще'),
-    new ProcessInstance('отсутствует', 'undefined', new Date(2020, 11, 31), 'что это вообще')];
+    new ProcessInstance('не существует', 'null', 'none', new Date(2020, 0, 1), 'что это вообще'),
+    new ProcessInstance('отсутствует', 'undefined', 'missing', new Date(2020, 11, 31), 'что это вообще')];
 
   constructor() { }
 
