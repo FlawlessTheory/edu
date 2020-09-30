@@ -1,26 +1,20 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { TabSwitchService } from 'src/app/services/tab-switch.service';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'tab-switch',
-  templateUrl: './tab-switch.component.html',
-  styleUrls: ['./tab-switch.component.css']
-})
-export class TabSwitchComponent implements OnInit, OnDestroy {
-  isLocked: boolean;
+             selector: 'tab-switch',
+             templateUrl: './tab-switch.component.html',
+             styleUrls: ['./tab-switch.component.css']
+           })
+export class TabSwitchComponent {
+  readonly isLocked$: Observable<boolean>;
 
   constructor(private tabSwitchService: TabSwitchService) {
-    this.tabSwitchService.isLocked$.subscribe((isLocked: boolean) => this.isLocked = isLocked );
-  }
-
-  ngOnInit(): void {
-  }
-
-  ngOnDestroy(): void {
-    this.tabSwitchService.isLocked$.unsubscribe();
+    this.isLocked$ = this.tabSwitchService.isCurrentTabLocked();
   }
 
   onButtonClicked(tab: string): void {
-    this.tabSwitchService.switchTab(tab);
+    this.tabSwitchService.switchCurrentTab(tab);
   }
 }

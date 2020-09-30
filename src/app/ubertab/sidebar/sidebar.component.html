@@ -1,4 +1,4 @@
-<ng-container [ngSwitch]="currentTab">
+<ng-container [ngSwitch]="currentTab$ | async">
   <div *ngSwitchCase="'instance-tab'">
     <button title="Приостановить процесс">Приостановить процесс</button>
     <button title="Изменить приоритеты для всех работ данного процесса">Изменить приоритеты для всех работ данного процесса</button>

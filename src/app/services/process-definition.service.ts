@@ -8,9 +8,10 @@ import { ProcessDefinitionStoreService } from 'src/app/services/backend/process-
 @Injectable()
 export class ProcessDefinitionService {
 
-  inputFormOpened$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private inputFormOpened$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private tabSwitchService: TabSwitchService, private backendService: ProcessDefinitionStoreService) { }
+  constructor(private tabSwitchService: TabSwitchService, private backendService: ProcessDefinitionStoreService) {
+  }
 
   add(processDefinition: ProcessDefinition): Observable<ProcessDefinition[]> {
     this.backendService.add(processDefinition);
@@ -54,5 +55,9 @@ export class ProcessDefinitionService {
   showInputForm(): void {
     this.inputFormOpened$.next(true);
     this.tabSwitchService.lockCurrentTab();
+  }
+
+  isInputFormOpened(): Observable<boolean> {
+    return this.inputFormOpened$;
   }
 }

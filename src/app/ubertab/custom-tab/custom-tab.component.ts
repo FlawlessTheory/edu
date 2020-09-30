@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProcessInstance } from 'src/app/models/process/process-instance';
 import { ProcessInstanceService } from 'src/app/services/process-instance.service';
 import { ProcessDefinition } from 'src/app/models/process/process-definition';
@@ -7,39 +7,32 @@ import { TabSwitchService } from 'src/app/services/tab-switch.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'custom-tab',
-  templateUrl: './custom-tab.component.html',
-  styleUrls: ['./custom-tab.component.css']
-})
-export class CustomTabComponent implements OnInit, OnDestroy {
-  currentTab: string;
-  formIsVisible: boolean;
-  processInstanceArray: Observable<ProcessInstance[]>;
-  processDefinitionArray: Observable<ProcessDefinition[]>;
+             selector: 'custom-tab',
+             templateUrl: './custom-tab.component.html',
+             styleUrls: ['./custom-tab.component.css']
+           })
+export class CustomTabComponent {
+  currentTab$: Observable<string>;
+  formIsVisible$: Observable<boolean>;
+  processInstanceArray$: Observable<ProcessInstance[]>;
+  processDefinitionArray$: Observable<ProcessDefinition[]>;
 
   constructor(private definitionService: ProcessDefinitionService,
               private instanceService: ProcessInstanceService,
               private tabSwitchService: TabSwitchService) {
-    this.tabSwitchService.currentTab$.subscribe((tab: string) => this.currentTab = tab);
+    this.currentTab$ = this.tabSwitchService.getCurrentTab();
 
-    this.processInstanceArray = this.instanceService.get();
-    this.definitionService.inputFormOpened$.subscribe((val: boolean) => this.formIsVisible = val);
+    this.processInstanceArray$ = this.instanceService.get();
+    this.formIsVisible$ = this.definitionService.isInputFormOpened();
 
-    this.processDefinitionArray = this.definitionService.get();
-  }
-
-  ngOnInit(): void { }
-
-  ngOnDestroy(): void {
-    this.tabSwitchService.currentTab$.unsubscribe();
-    this.definitionService.inputFormOpened$.unsubscribe();
+    this.processDefinitionArray$ = this.definitionService.get();
   }
 
   addProcessDefinition(processDefinition: ProcessDefinition): void {
-    this.processDefinitionArray = this.definitionService.add(processDefinition);
+    this.processDefinitionArray$ = this.definitionService.add(processDefinition);
   }
 
   sortProcessDefinitions(option: string): void {
-    this.processDefinitionArray = this.definitionService.sort(option);
+    this.processDefinitionArray$ = this.definitionService.sort(option);
   }
 }
