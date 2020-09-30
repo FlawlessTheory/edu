@@ -1,32 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { TabSwitchComponent } from './tab-switch/tab-switch.component';
-import { CustomTabComponent } from './custom-tab/custom-tab.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { ProcessDefinitionService } from 'src/app/services/process-definition.service';
+import { ProcessInstanceService } from 'src/app/services/process-instance.service';
 
 @Component({
   selector: 'ubertab',
   templateUrl: './ubertab.component.html',
-  styleUrls: ['./ubertab.component.css']
+  styleUrls: ['./ubertab.component.css'],
+  providers: [ProcessDefinitionService, ProcessInstanceService]
 })
 export class UbertabComponent implements OnInit {
-  currentTab: string;
-  formIsVisible: boolean;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.formIsVisible = false;
-  }
-
-  switchTab(tab: string): void {
-    this.currentTab = tab;
-  }
-
-  showForm(): void {
-    this.formIsVisible = true;
-  }
-
-  hideForm(): void {
-    this.formIsVisible = false;
   }
 }

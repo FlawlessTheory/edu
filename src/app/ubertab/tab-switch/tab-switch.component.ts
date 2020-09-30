@@ -1,20 +1,20 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
+import { TabSwitchService } from 'src/app/services/tab-switch.service';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'tab-switch',
-  templateUrl: './tab-switch.component.html',
-  styleUrls: ['./tab-switch.component.css']
-})
-export class TabSwitchComponent implements OnInit {
-  @Output()
-  buttonClicked: EventEmitter<string> = new EventEmitter<string>();
+             selector: 'tab-switch',
+             templateUrl: './tab-switch.component.html',
+             styleUrls: ['./tab-switch.component.css']
+           })
+export class TabSwitchComponent {
+  readonly isLocked$: Observable<boolean>;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private tabSwitchService: TabSwitchService) {
+    this.isLocked$ = this.tabSwitchService.isCurrentTabLocked();
   }
 
-  onButtonClicked(button: string): void {
-    this.buttonClicked.emit(button);
+  onButtonClicked(tab: string): void {
+    this.tabSwitchService.switchCurrentTab(tab);
   }
 }

@@ -1,34 +1,38 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { BPrunning } from './bp-classes/bprunning';
-import { BPschema } from './bp-classes/bpschema';
+import { Component } from '@angular/core';
+import { ProcessInstance } from 'src/app/models/process/process-instance';
+import { ProcessInstanceService } from 'src/app/services/process-instance.service';
+import { ProcessDefinition } from 'src/app/models/process/process-definition';
+import { ProcessDefinitionService } from 'src/app/services/process-definition.service';
+import { TabSwitchService } from 'src/app/services/tab-switch.service';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'custom-tab',
-  templateUrl: './custom-tab.component.html',
-  styleUrls: ['./custom-tab.component.css']
-})
-export class CustomTabComponent implements OnInit {
-  @Input()
-  currentTab: string;
+             selector: 'custom-tab',
+             templateUrl: './custom-tab.component.html',
+             styleUrls: ['./custom-tab.component.css']
+           })
+export class CustomTabComponent {
+  currentTab$: Observable<string>;
+  formIsVisible$: Observable<boolean>;
+  processInstanceArray$: Observable<ProcessInstance[]>;
+  processDefinitionArray$: Observable<ProcessDefinition[]>;
 
-  @Input()
-  formIsVisible: boolean;
+  constructor(private definitionService: ProcessDefinitionService,
+              private instanceService: ProcessInstanceService,
+              private tabSwitchService: TabSwitchService) {
+    this.currentTab$ = this.tabSwitchService.getCurrentTab();
 
-  @Output()
-  schemaAdded: EventEmitter<boolean> = new EventEmitter<boolean>();
+    this.processInstanceArray$ = this.instanceService.get();
+    this.formIsVisible$ = this.definitionService.isInputFormOpened();
 
-  runningArray: Array<BPrunning>;
-  schemasArray: Array<BPschema>;
-
-  constructor() { }
-
-  ngOnInit(): void {
-    this.runningArray = new Array<BPrunning>(new BPrunning('не существует', 'null', new Date(2020, 0, 1), 'что это вообще'), new BPrunning('отсутствует', 'undefined', new Date(2020, 11, 31), 'что это вообще'));
-    this.schemasArray = new Array<BPschema>(new BPschema('существует в воображении', 'N0TH1NG', '?', 1, 'ООО "Рога и Копыта"'), new BPschema('придумал', 'V01D', '!', 9, 'ОАО "Вектор"'));
+    this.processDefinitionArray$ = this.definitionService.get();
   }
 
-  onNewSchema(newSchema: BPschema): void {
-    this.schemasArray.push(newSchema);
-    this.schemaAdded.emit(true);
+  addProcessDefinition(processDefinition: ProcessDefinition): void {
+    this.processDefinitionArray$ = this.definitionService.add(processDefinition);
+  }
+
+  sortProcessDefinitions(option: string): void {
+    this.processDefinitionArray$ = this.definitionService.sort(option);
   }
 }

@@ -1,6 +1,6 @@
-<div *ngIf="!formIsVisible">
-  <div [ngSwitch]="currentTab">
-    <table *ngSwitchCase="'running-tab'">
+<div *ngIf="!(formIsVisible$ | async)">
+  <div [ngSwitch]="currentTab$ | async">
+    <table *ngSwitchCase="'instance-tab'">
       <caption>ЭКСТРЕМАЛЬНАЯ ТАБЛИЦА ФО ЗАПУЩЕННЫЕ БП</caption>
       <thead>
       <tr>
@@ -12,7 +12,7 @@
       </thead>
 
       <tbody>
-      <ng-container *ngFor="let item of runningArray">
+      <ng-container *ngFor="let item of processInstanceArray$ | async">
         <tr>
           <td>{{item.state}}</td>
           <td>{{item.ID}}</td>
@@ -23,34 +23,39 @@
       </tbody>
     </table>
 
-    <table *ngSwitchCase="'schemas-tab'">
-      <caption>ЭКСТРЕМАЛЬНАЯ ТАБЛИЦА ФО СХЕМЫ БП</caption>
+    <div *ngSwitchCase="'definition-tab'">
+      <sort-options (sortOptionPicked)="sortProcessDefinitions($event)"></sort-options>
 
-      <thead>
-      <tr>
-        <td>Состояние</td>
-        <td>Идентификатор</td>
-        <td>Название</td>
-        <td>Версия</td>
-        <td>Организация</td>
-      </tr>
-      </thead>
+      <table>
+        <caption>ЭКСТРЕМАЛЬНАЯ ТАБЛИЦА ФО СХЕМЫ БП</caption>
 
-      <tbody>
-      <ng-container *ngFor="let item of schemasArray">
+        <thead>
         <tr>
-          <td>{{item.state}}</td>
-          <td>{{item.ID}}</td>
-          <td>{{item.name}}</td>
-          <td>{{item.version}}</td>
-          <td>{{item.organization}}</td>
+          <td>Состояние</td>
+          <td>Идентификатор</td>
+          <td>Название</td>
+          <td>Версия</td>
+          <td>Организация</td>
         </tr>
-      </ng-container>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+        <ng-container *ngFor="let item of processDefinitionArray$ | async">
+          <tr>
+            <td>{{item.state}}</td>
+            <td>{{item.ID}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.version}}</td>
+            <td>{{item.organization}}</td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
 
     <img *ngSwitchDefault src="https://media.tenor.com/images/71d974d8ca08c62330fc3ac86b485ba6/tenor.gif">
   </div>
 </div>
 
-<schema-input-form *ngIf="formIsVisible" (newSchema)="onNewSchema($event)"></schema-input-form>
+<process-definition-input-form *ngIf="(formIsVisible$ | async)" (definitionCreated)="addProcessDefinition($event)">
+</process-definition-input-form>
