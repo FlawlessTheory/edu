@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ProcessInstanceStoreService } from 'src/app/services/process-instance-store.service';
+import { ProcessInstanceStoreService } from 'src/app/services/backend/process-instance-store.service';
 import { Observable } from 'rxjs';
 import { ProcessInstance } from 'src/app/models/process/process-instance';
 

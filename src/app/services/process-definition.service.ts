@@ -3,7 +3,7 @@ import { ProcessDefinition } from 'src/app/models/process/process-definition';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TabSwitchService } from 'src/app/services/tab-switch.service';
-import { ProcessDefinitionStoreService } from 'src/app/services/process-definition-store.service';
+import { ProcessDefinitionStoreService } from 'src/app/services/backend/process-definition-store.service';
 
 @Injectable()
 export class ProcessDefinitionService {

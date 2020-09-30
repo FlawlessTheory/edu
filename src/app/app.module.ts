@@ -11,8 +11,8 @@ import { SidebarComponent } from './ubertab/sidebar/sidebar.component';
 import { ProcessDefinitionInputFormComponent } from 'src/app/ubertab/custom-tab/process-instance-input-form/process-instance-input-form.component';
 import { SortOptionsComponent } from './ubertab/custom-tab/sort-options/sort-options.component';
 import { TabSwitchService } from 'src/app/services/tab-switch.service';
-import { ProcessDefinitionStoreService } from 'src/app/services/process-definition-store.service';
-import { ProcessInstanceStoreService } from 'src/app/services/process-instance-store.service';
+import { ProcessDefinitionStoreService } from 'src/app/services/backend/process-definition-store.service';
+import { ProcessInstanceStoreService } from 'src/app/services/backend/process-instance-store.service';
 
 @NgModule({
   declarations: [

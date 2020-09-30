@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProcessInstance } from 'src/app/models/process/process-instance';
+import { ProcessInstanceService } from 'src/app/services/process-instance.service';
 import { ProcessDefinition } from 'src/app/models/process/process-definition';
 import { ProcessDefinitionService } from 'src/app/services/process-definition.service';
 import { TabSwitchService } from 'src/app/services/tab-switch.service';
 import { Observable } from 'rxjs';
-import { ProcessInstanceService } from 'src/app/services/process-instance.service';
 
 @Component({
   selector: 'custom-tab',
