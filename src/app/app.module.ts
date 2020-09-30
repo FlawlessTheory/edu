@@ -13,6 +13,7 @@ import { SortOptionsComponent } from './ubertab/custom-tab/sort-options/sort-opt
 import { TabSwitchService } from 'src/app/services/tab-switch.service';
 import { ProcessDefinitionStoreService } from 'src/app/services/backend/process-definition-store.service';
 import { ProcessInstanceStoreService } from 'src/app/services/backend/process-instance-store.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ProcessInstanceStoreService } from 'src/app/services/backend/process-in
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [TabSwitchService, ProcessDefinitionStoreService, ProcessInstanceStoreService],
   bootstrap: [AppComponent],
