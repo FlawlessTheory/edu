@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TabSwitchService } from 'src/app/services/tab-switch.service';
+import { TabService } from 'src/app/services/tab.service';
 import { ProcessDefinitionService } from 'src/app/services/process-definition.service';
 import { Observable } from 'rxjs';
 
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class SidebarComponent {
   currentTab$: Observable<string>;
 
-  constructor(private tabSwitchService: TabSwitchService, private processDefinitionService: ProcessDefinitionService) {
+  constructor(private tabSwitchService: TabService, private processDefinitionService: ProcessDefinitionService) {
     this.currentTab$ = this.tabSwitchService.getCurrentTab();
   }
 

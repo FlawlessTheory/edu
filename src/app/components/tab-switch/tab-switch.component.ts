@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TabSwitchService } from 'src/app/services/tab-switch.service';
-import { Observable } from 'rxjs';
+import { TabService } from 'src/app/services/tab.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
              selector: 'tab-switch',
@@ -8,13 +8,9 @@ import { Observable } from 'rxjs';
              styleUrls: ['./tab-switch.component.css']
            })
 export class TabSwitchComponent {
-  readonly isLocked$: Observable<boolean>;
+  readonly isLocked$: BehaviorSubject<boolean>;
 
-  constructor(private tabSwitchService: TabSwitchService) {
+  constructor(private tabSwitchService: TabService) {
     this.isLocked$ = this.tabSwitchService.isCurrentTabLocked();
-  }
-
-  onButtonClicked(tab: string): void {
-    this.tabSwitchService.switchCurrentTab(tab);
   }
 }

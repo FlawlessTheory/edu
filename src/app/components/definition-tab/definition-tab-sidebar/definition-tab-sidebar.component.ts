@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProcessDefinitionService } from 'src/app/services/process-definition.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-definition-tab-sidebar',
@@ -8,12 +9,14 @@ import { ProcessDefinitionService } from 'src/app/services/process-definition.se
 })
 export class DefinitionTabSidebarComponent implements OnInit {
 
-  constructor(private processDefinitionService: ProcessDefinitionService) { }
+  constructor(private processDefinitionService: ProcessDefinitionService,
+              private route: Router) { }
 
   ngOnInit(): void {
   }
 
   onCreateProcessDefinitionButtonClicked(): void {
-    this.processDefinitionService.showInputForm();
+    this.route.navigate(['../input'])
+        .catch((err) => console.log('something went wrong in sidebar: ', err));
   }
 }

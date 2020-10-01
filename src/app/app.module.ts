@@ -10,7 +10,7 @@ import { CustomTabComponent } from './components/ubertab/custom-tab/custom-tab.c
 import { SidebarComponent } from './components/ubertab/sidebar/sidebar.component';
 import { ProcessDefinitionInputFormComponent } from 'src/app/components/ubertab/custom-tab/process-instance-input-form/process-instance-input-form.component';
 import { SortOptionsComponent } from './components/ubertab/custom-tab/sort-options/sort-options.component';
-import { TabSwitchService } from 'src/app/services/tab-switch.service';
+import { TabService } from 'src/app/services/tab.service';
 import { ProcessDefinitionStoreService } from 'src/app/services/backend/process-definition-store.service';
 import { ProcessInstanceStoreService } from 'src/app/services/backend/process-instance-store.service';
 import { RouterModule, Routes } from '@angular/router';
@@ -25,10 +25,6 @@ import { InstanceTabTableComponent } from './components/instance-tab/instance-ta
 import { InstanceTabSidebarComponent } from './components/instance-tab/instance-tab-sidebar/instance-tab-sidebar.component';
 import { InstanceTabSortOptionsComponent } from './components/instance-tab/instance-tab-sort-options/instance-tab-sort-options.component';
 import { InstanceTabInputFormComponent } from './components/instance-tab/instance-tab-input-form/instance-tab-input-form.component';
-
-const routes: Routes = [
-  {path: '**', component: PageNotFoundComponent}
-];
 
 @NgModule({
   declarations: [
@@ -54,10 +50,9 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    ReactiveFormsModule
   ],
-  providers: [TabSwitchService, ProcessDefinitionStoreService, ProcessInstanceStoreService],
+  providers: [TabService, ProcessDefinitionStoreService, ProcessInstanceStoreService],
   bootstrap: [AppComponent],
   exports: [RouterModule, UbertabComponent, TabSwitchComponent, CustomTabComponent, SidebarComponent, ProcessDefinitionInputFormComponent]
 })

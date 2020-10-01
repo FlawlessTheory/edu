@@ -18,7 +18,30 @@ export class ProcessDefinitionStoreService {
     return from([this.processDefinitionArray]);
   }
 
-  add(processDefinition: ProcessDefinition): void {
-    this.processDefinitionArray.push(processDefinition);
+  add(processDefinition: ProcessDefinition): Promise<void> {
+    return Promise.resolve(() => this.processDefinitionArray.push(processDefinition))
+                  .then(void 0);
+  }
+
+  sort(option: string): Promise<void> {
+    const comparator = (firstString: string, secondString: string) => {
+      return firstString.localeCompare(secondString);
+    };
+
+    return Promise.resolve(() => this.processDefinitionArray.sort((a, b) => {
+      switch (option) {
+        case 'state':
+          return comparator(a.state, b.state);
+
+        case 'ID':
+          return comparator(a.ID, b.ID);
+
+        case 'name':
+          return comparator(a.name, b.name);
+
+        case 'organization':
+          return comparator(a.organization, b.organization);
+      }
+    })).then(void 0);
   }
 }

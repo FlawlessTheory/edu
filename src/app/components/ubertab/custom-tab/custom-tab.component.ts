@@ -3,7 +3,7 @@ import { ProcessInstance } from 'src/app/models/process/process-instance';
 import { ProcessInstanceService } from 'src/app/services/process-instance.service';
 import { ProcessDefinition } from 'src/app/models/process/process-definition';
 import { ProcessDefinitionService } from 'src/app/services/process-definition.service';
-import { TabSwitchService } from 'src/app/services/tab-switch.service';
+import { TabService } from 'src/app/services/tab.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -19,20 +19,20 @@ export class CustomTabComponent {
 
   constructor(private definitionService: ProcessDefinitionService,
               private instanceService: ProcessInstanceService,
-              private tabSwitchService: TabSwitchService) {
+              private tabSwitchService: TabService) {
     this.currentTab$ = this.tabSwitchService.getCurrentTab();
 
     this.processInstanceArray$ = this.instanceService.get();
     this.formIsVisible$ = this.definitionService.isInputFormOpened();
 
-    this.processDefinitionArray$ = this.definitionService.get();
+    this.processDefinitionArray$ = this.definitionService.getProcessDefinitionArray();
   }
 
   addProcessDefinition(processDefinition: ProcessDefinition): void {
-    this.processDefinitionArray$ = this.definitionService.add(processDefinition);
+    this.processDefinitionArray$ = this.definitionService.addProcessDefinition(processDefinition);
   }
 
   sortProcessDefinitions(option: string): void {
-    this.processDefinitionArray$ = this.definitionService.sort(option);
+    this.processDefinitionArray$ = this.definitionService.sortProcessDefinitionArray(option);
   }
 }
