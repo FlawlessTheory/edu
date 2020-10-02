@@ -12,20 +12,20 @@ const routes: Routes = [
   {
     path: 'definitions', component: DefinitionTabComponent,
     children: [
-      { path: '', pathMatch: 'full', redirectTo: '/view' },
-      { path: '/view', component: DefinitionTabTableComponent },
-      { path: '/add', component: DefinitionTabInputFormComponent }
+      { path: '', pathMatch: 'full', redirectTo: 'view' },
+      { path: 'view', component: DefinitionTabTableComponent },
+      { path: 'add', component: DefinitionTabInputFormComponent }
     ]
   },
   {
     path: 'instances', component: InstanceTabComponent,
     children: [
-      { path: '', pathMatch: 'full', redirectTo: '/view' },
-      { path: '/view', component: InstanceTabTableComponent },
-      { path: '/add', component: InstanceTabInputFormComponent }
+      { path: '', pathMatch: 'full', redirectTo: 'view' },
+      { path: 'view', component: InstanceTabTableComponent },
+      { path: 'add', component: InstanceTabInputFormComponent }
     ]
   },
-  { path: '', pathMatch: 'full', redirectTo: '/definitions' },
+  { path: '', pathMatch: 'full', redirectTo: 'definitions' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

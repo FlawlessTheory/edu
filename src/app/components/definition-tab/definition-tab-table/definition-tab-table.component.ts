@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { ProcessDefinition } from 'src/app/models/process/process-definition';
 import { ProcessDefinitionService } from 'src/app/services/process-definition.service';
 
+import { map } from 'rxjs/operators';
+
 @Component({
              selector: 'app-definition-tab-table',
              templateUrl: './definition-tab-table.component.html',

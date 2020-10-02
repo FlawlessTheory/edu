@@ -16,7 +16,7 @@ export class DefinitionTabSidebarComponent implements OnInit {
   }
 
   onCreateProcessDefinitionButtonClicked(): void {
-    this.route.navigate(['../input'])
+    this.route.navigate(['../definitions/add'])
         .catch((err) => console.log('something went wrong in sidebar: ', err));
   }
 }

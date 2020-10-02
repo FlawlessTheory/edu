@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ProcessDefinition } from 'src/app/models/process/process-definition';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { publishReplay, repeatWhen } from 'rxjs/operators';
+import { publishReplay, repeatWhen, map } from 'rxjs/operators';
 import { TabService } from 'src/app/services/tab.service';
 import { ProcessDefinitionStoreService } from 'src/app/services/backend/process-definition-store.service';
 
@@ -13,8 +13,8 @@ export class ProcessDefinitionService {
 
   constructor(private tabSwitchService: TabService, private backendService: ProcessDefinitionStoreService) {
     this.processDefinitionArray$ = this.backendService.get()
-                     .pipe(repeatWhen(() => this.refreshContents$),
-                           publishReplay(1));
+                                       .pipe(repeatWhen(() => this.refreshContents$),
+                                             publishReplay(1));
   }
 
   addProcessDefinition(processDefinition: ProcessDefinition): void {
