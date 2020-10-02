@@ -13,7 +13,7 @@
     </thead>
 
     <tbody>
-    <ng-container *ngFor="let item of processDefinitionArray$ | async">
+    <ng-container *ngFor="let item of (processDefinitionArray$ | async)">
       <tr>
         <td>{{item.state}}</td>
         <td>{{item.ID}}</td>
