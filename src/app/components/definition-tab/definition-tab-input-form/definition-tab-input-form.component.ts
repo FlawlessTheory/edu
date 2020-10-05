@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProcessDefinition } from 'src/app/models/process/process-definition';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ProcessDefinitionService } from 'src/app/services/process-definition.service';
 import { Router } from '@angular/router';
 import { TabService } from 'src/app/services/tab.service';
@@ -11,16 +11,16 @@ import { TabService } from 'src/app/services/tab.service';
              styleUrls: ['./definition-tab-input-form.component.css']
            })
 export class DefinitionTabInputFormComponent {
-  formGroup: FormGroup;
+  formGroup = this.formBuilder.group({
+                                       ID: ['', [Validators.required, Validators.minLength(5)]],
+                                       name: ['', [Validators.required, Validators.minLength(5)]],
+                                       organization: ''
+                                     });
 
   constructor(private tabService: TabService,
               private definitionService: ProcessDefinitionService,
-              private route: Router) {
-    const ID = new FormControl('', [Validators.required, Validators.minLength(5)]);
-    const name = new FormControl('', [Validators.required, Validators.minLength(5)]);
-    const organization = new FormControl('');
-    this.formGroup = new FormGroup({ ID: ID, name: name, organization: organization });
-
+              private route: Router,
+              private formBuilder: FormBuilder) {
     this.tabService.lockCurrentTab();
   }
 
