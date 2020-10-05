@@ -1,63 +1,32 @@
 import { Injectable } from '@angular/core';
 import { ProcessDefinition } from 'src/app/models/process/process-definition';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { TabSwitchService } from 'src/app/services/tab-switch.service';
+import { publishReplay, refCount, repeatWhen } from 'rxjs/operators';
+import { TabService } from 'src/app/services/tab.service';
 import { ProcessDefinitionStoreService } from 'src/app/services/backend/process-definition-store.service';
 
 @Injectable()
 export class ProcessDefinitionService {
 
-  private inputFormOpened$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private processDefinitionArray$: Observable<ProcessDefinition[]>;
 
-  constructor(private tabSwitchService: TabSwitchService, private backendService: ProcessDefinitionStoreService) {
+  constructor(private tabSwitchService: TabService, private backendService: ProcessDefinitionStoreService) {
+    this.processDefinitionArray$ = this.backendService.get()
+                                       .pipe(
+                                         publishReplay(1),
+                                         refCount());
   }
 
-  add(processDefinition: ProcessDefinition): Observable<ProcessDefinition[]> {
+  addProcessDefinition(processDefinition: ProcessDefinition): void {
     this.backendService.add(processDefinition);
-
-    this.inputFormOpened$.next(false);
     this.tabSwitchService.unlockCurrentTab();
-
-    return this.backendService.get();
   }
 
-  get(): Observable<ProcessDefinition[]> {
-    return this.backendService.get();
+  getProcessDefinitionArray(): Observable<ProcessDefinition[]> {
+    return this.processDefinitionArray$;
   }
 
-  sort(option: string): Observable<ProcessDefinition[]> {
-    return this.backendService.get().pipe(
-      map(pdArray => {
-        return pdArray.sort((a, b) => {
-          const comparator = (firstString: string, secondString: string) => {
-            return firstString.localeCompare(secondString);
-          };
-
-          switch (option) {
-            case 'state':
-              return comparator(a.state, b.state);
-
-            case 'ID':
-              return comparator(a.ID, b.ID);
-
-            case 'name':
-              return comparator(a.name, b.name);
-
-            case 'organization':
-              return comparator(a.organization, b.organization);
-          }
-        });
-      })
-    );
-  }
-
-  showInputForm(): void {
-    this.inputFormOpened$.next(true);
-    this.tabSwitchService.lockCurrentTab();
-  }
-
-  isInputFormOpened(): Observable<boolean> {
-    return this.inputFormOpened$;
+  sortProcessDefinitionArray(option: string): void {
+    this.backendService.sort(option);
   }
 }

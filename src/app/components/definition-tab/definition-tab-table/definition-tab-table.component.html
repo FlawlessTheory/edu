@@ -1,0 +1,27 @@
+<div>
+  <table>
+    <caption>ЭКСТРЕМАЛЬНАЯ ТАБЛИЦА ФО СХЕМЫ БП</caption>
+
+    <thead>
+    <tr>
+      <td>Состояние</td>
+      <td>Идентификатор</td>
+      <td>Название</td>
+      <td>Версия</td>
+      <td>Организация</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <ng-container *ngFor="let item of (processDefinitionArray$ | async)">
+      <tr>
+        <td>{{item.state}}</td>
+        <td>{{item.ID}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.version}}</td>
+        <td>{{item.organization}}</td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</div>

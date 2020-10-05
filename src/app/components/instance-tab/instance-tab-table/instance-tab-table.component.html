@@ -1,0 +1,24 @@
+<div>
+  <table>
+    <caption>ЭКСТРЕМАЛЬНАЯ ТАБЛИЦА ФО ЗАПУЩЕННЫЕ БП</caption>
+    <thead>
+    <tr>
+      <td>Состояние</td>
+      <td>Идентификатор</td>
+      <td>Время старта</td>
+      <td>Бизнес-ключ</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <ng-container *ngFor="let item of processInstanceArray$ | async">
+      <tr>
+        <td>{{item.state}}</td>
+        <td>{{item.ID}}</td>
+        <td>{{item.startTS.toLocaleString()}}</td>
+        <td>{{item.businessKey}}</td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</div>

@@ -21,4 +21,26 @@ export class ProcessDefinitionStoreService {
   add(processDefinition: ProcessDefinition): void {
     this.processDefinitionArray.push(processDefinition);
   }
+
+  sort(option: string): void {
+    const comparator = (firstString: string, secondString: string) => {
+      return firstString.localeCompare(secondString);
+    };
+
+    this.processDefinitionArray.sort((a, b) => {
+      switch (option) {
+        case 'state':
+          return comparator(a.state, b.state);
+
+        case 'ID':
+          return comparator(a.ID, b.ID);
+
+        case 'name':
+          return comparator(a.name, b.name);
+
+        case 'organization':
+          return comparator(a.organization, b.organization);
+      }
+    });
+  }
 }
