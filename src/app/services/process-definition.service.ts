@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ProcessDefinition } from 'src/app/models/process/process-definition';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { publishReplay, refCount, repeatWhen } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { publishReplay, refCount } from 'rxjs/operators';
 import { TabService } from 'src/app/services/tab.service';
 import { ProcessDefinitionStoreService } from 'src/app/services/backend/process-definition-store.service';
 
