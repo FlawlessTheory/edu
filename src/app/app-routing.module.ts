@@ -7,6 +7,7 @@ import { DefinitionTabTableComponent } from 'src/app/components/definition-tab/d
 import { DefinitionTabInputFormComponent } from 'src/app/components/definition-tab/definition-tab-input-form/definition-tab-input-form.component';
 import { InstanceTabInputFormComponent } from 'src/app/components/instance-tab/instance-tab-input-form/instance-tab-input-form.component';
 import { InstanceTabTableComponent } from 'src/app/components/instance-tab/instance-tab-table/instance-tab-table.component';
+import { DefinitionTabDetailedInfoComponent } from 'src/app/components/definition-tab/definition-tab-table/definition-tab-detailed-info/definition-tab-detailed-info.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,16 @@ const routes: Routes = [
     path: 'instances', component: InstanceTabComponent,
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'view' },
-      { path: 'view', component: InstanceTabTableComponent },
+      {
+        path: 'view',
+        component: InstanceTabTableComponent,
+        children: [
+          {
+            path: 'detailed/:id',
+            component: DefinitionTabDetailedInfoComponent
+          }
+        ]
+      },
       { path: 'add', component: InstanceTabInputFormComponent }
     ]
   },

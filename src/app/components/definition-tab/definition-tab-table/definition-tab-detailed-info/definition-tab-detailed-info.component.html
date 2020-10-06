@@ -1,1 +1,25 @@
-<p>definition-tab-detailed-info works!</p>
+<button (click)="backToTable()">Вернуться к таблице</button>
+
+<table>
+  <thead>
+  <tr>
+    <td>Состояние</td>
+    <td>Идентификатор</td>
+    <td>Название</td>
+    <td>Версия</td>
+    <td>Организация</td>
+    <td>DANK COLUMN</td>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr>
+    <td>{{this.state}}</td>
+    <td>{{this.definitionID}}</td>
+    <td>{{this.name}}</td>
+    <td>{{this.version}}</td>
+    <td>{{this.organization}}</td>
+    <td>LMAO SIDE TEXT</td>
+  </tr>
+  </tbody>
+</table>

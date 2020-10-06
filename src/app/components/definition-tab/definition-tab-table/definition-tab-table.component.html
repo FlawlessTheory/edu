@@ -16,7 +16,7 @@
     <ng-container *ngFor="let item of (processDefinitionArray$ | async)">
       <tr>
         <td>{{item.state}}</td>
-        <td>{{item.ID}}</td>
+        <td><a [routerLink]="'./detailed'" [queryParams]="{id: item.ID}">{{item.ID}}</a></td>
         <td>{{item.name}}</td>
         <td>{{item.version}}</td>
         <td>{{item.organization}}</td>
