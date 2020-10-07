@@ -14,24 +14,16 @@ const routes: Routes = [
     path: 'definitions', component: DefinitionTabComponent,
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'view' },
+      { path: 'add', component: DefinitionTabInputFormComponent },
       { path: 'view', component: DefinitionTabTableComponent },
-      { path: 'add', component: DefinitionTabInputFormComponent }
+      { path: 'view/detailed', component: DefinitionTabDetailedInfoComponent }
     ]
   },
   {
     path: 'instances', component: InstanceTabComponent,
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'view' },
-      {
-        path: 'view',
-        component: InstanceTabTableComponent,
-        children: [
-          {
-            path: 'detailed/:id',
-            component: DefinitionTabDetailedInfoComponent
-          }
-        ]
-      },
+      { path: 'view', component: InstanceTabTableComponent },
       { path: 'add', component: InstanceTabInputFormComponent }
     ]
   },

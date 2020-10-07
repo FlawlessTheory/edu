@@ -11,7 +11,8 @@ import { ProcessDefinitionService } from 'src/app/services/process-definition.se
 export class DefinitionTabTableComponent implements OnInit {
   processDefinitionArray$: Observable<ProcessDefinition[]>;
 
-  constructor(private definitionService: ProcessDefinitionService) {}
+  constructor(private definitionService: ProcessDefinitionService) {
+  }
 
   public ngOnInit(): void {
     this.processDefinitionArray$ = this.definitionService.getProcessDefinitionArray();
