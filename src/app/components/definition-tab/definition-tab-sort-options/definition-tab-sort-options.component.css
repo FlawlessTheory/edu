@@ -1,0 +1,13 @@
+p {
+  margin: 5px;
+}
+
+div {
+  display: flex;
+  flex-direction: row;
+}
+
+button {
+  margin-right: 5px;
+  padding: 5px;
+}

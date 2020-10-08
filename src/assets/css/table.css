@@ -1,16 +1,12 @@
 div {
   display: flex;
   flex-direction: column;
-  padding-left: 10px;
-}
-
-table {
-  border-collapse: collapse;
 }
 
 td {
   padding: 3px;
-  border: black solid 1px;
+  border: black solid;
+  margin: 0;
 }
 
 td.state {

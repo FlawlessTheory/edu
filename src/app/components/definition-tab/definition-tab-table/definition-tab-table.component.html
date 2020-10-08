@@ -1,25 +1,29 @@
 <div>
+  <app-definition-tab-sort-options></app-definition-tab-sort-options>
+
+  <hr>
+
   <table>
     <caption>ЭКСТРЕМАЛЬНАЯ ТАБЛИЦА ФО СХЕМЫ БП</caption>
 
     <thead>
     <tr>
-      <td>Состояние</td>
-      <td>Идентификатор</td>
-      <td>Название</td>
-      <td>Версия</td>
-      <td>Организация</td>
+      <td class="state">Состояние</td>
+      <td class="ID">Идентификатор</td>
+      <td class="long">Название</td>
+      <td class="short">Версия</td>
+      <td class="long">Организация</td>
     </tr>
     </thead>
 
     <tbody>
     <ng-container *ngFor="let item of (processDefinitionArray$ | async)">
       <tr>
-        <td>{{item.state}}</td>
-        <td><a [routerLink]="['.', 'detailed']" [queryParams]="{id: item.ID}">{{item.ID}}</a></td>
-        <td>{{item.name}}</td>
-        <td>{{item.version}}</td>
-        <td>{{item.organization}}</td>
+        <td class="state">{{item.state}}</td>
+        <td class="ID"><a [routerLink]="['.', 'detailed']" [queryParams]="{id: item.ID}">{{item.ID}}</a></td>
+        <td class="long">{{item.name}}</td>
+        <td class="short">{{item.version}}</td>
+        <td class="long">{{item.organization}}</td>
       </tr>
     </ng-container>
     </tbody>

@@ -1,22 +1,26 @@
 <div>
+  <app-instance-tab-sort-options></app-instance-tab-sort-options>
+
+  <hr>
+
   <table>
     <caption>ЭКСТРЕМАЛЬНАЯ ТАБЛИЦА ФО ЗАПУЩЕННЫЕ БП</caption>
     <thead>
     <tr>
-      <td>Состояние</td>
-      <td>Идентификатор</td>
-      <td>Время старта</td>
-      <td>Бизнес-ключ</td>
+      <td class="state">Состояние</td>
+      <td class="ID">Идентификатор</td>
+      <td class="short">Время старта</td>
+      <td class="long">Бизнес-ключ</td>
     </tr>
     </thead>
 
     <tbody>
     <ng-container *ngFor="let item of processInstanceArray$ | async">
       <tr>
-        <td>{{item.state}}</td>
-        <td>{{item.ID}}</td>
-        <td>{{item.startTS.toLocaleString()}}</td>
-        <td>{{item.businessKey}}</td>
+        <td class="state">{{item.state}}</td>
+        <td class="ID">{{item.ID}}</td>
+        <td class="short">{{item.startTS.toLocaleString()}}</td>
+        <td class="long">{{item.businessKey}}</td>
       </tr>
     </ng-container>
     </tbody>
