@@ -2,10 +2,12 @@ div {
   display: flex;
   flex-direction: column;
   width: 125px;
-  margin: 5px;
+  padding-right: 10px;
+  border-right: black solid 1px;
 }
 
 button {
   width: inherit;
   padding: 5px;
+  margin-top: 5px;
 }
