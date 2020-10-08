@@ -4,6 +4,11 @@ div {
   padding-left: 10px;
 }
 
+b {
+  font-size: 32px;
+  align-self: center;
+}
+
 table {
   border-collapse: collapse;
 }

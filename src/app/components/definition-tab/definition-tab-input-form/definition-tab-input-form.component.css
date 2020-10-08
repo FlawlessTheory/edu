@@ -1,0 +1,30 @@
+div.forPadding {
+  padding-left: 10px;
+}
+
+div.labelsAndButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+
+div.inputs {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+}
+
+input {
+  width: inherit;
+  margin-bottom: 7px;
+}
+
+label {
+  margin-bottom: 10px;
+}

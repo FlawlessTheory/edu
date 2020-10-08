@@ -2,28 +2,32 @@
   <button (click)="backToTable()">Вернуться к таблице</button>
 
   <table>
-    <thead>
+    <tr>
+      <td><b>НАЗВАНИЕ</b></td>
+      <td>{{definition.name}}</td>
+    </tr>
+
+    <tr>
+      <td>Идентификатор</td>
+      <td>{{definitionID}}</td>
+    </tr>
+
     <tr>
       <td>Состояние</td>
-      <td>Идентификатор</td>
-      <td>Название</td>
-      <td>Версия</td>
-      <td>Организация</td>
+      <td>{{definition.state}}</td>
     </tr>
-    </thead>
 
-    <tbody>
-    <ng-container>
-      <tr>
-        <td>{{definition.state}}</td>
-        <td>{{definitionID}}</td>
-        <td>{{definition.name}}</td>
-        <td>{{definition.version}}</td>
-        <td>{{definition.organization}}</td>
-      </tr>
-    </ng-container>
-    </tbody>
+    <tr>
+      <td>Версия</td>
+      <td>{{definition.version}}</td>
+    </tr>
+
+    <tr>
+      <td>Организация</td>
+      <td>{{definition.organization}}</td>
+    </tr>
   </table>
 
-  <img width="150px" height="150px" src="https://steamuserimages-a.akamaihd.net/ugc/912422091632168881/907EBE3A7DD84ED1957DD2551F14EFEE357CC4E4/">
+  <img width="150px" height="150px"
+       src="https://steamuserimages-a.akamaihd.net/ugc/912422091632168881/907EBE3A7DD84ED1957DD2551F14EFEE357CC4E4/">
 </div>

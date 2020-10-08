@@ -1,9 +1,11 @@
-<p>Отсортировать по:</p>
+<div class="container">
+  <p>Отсортировать по:</p>
 
-<div>
-  <button (click)="sortTableContents('state')">состоянию</button>
-  <button (click)="sortTableContents('ID')">ID</button>
-  <button (click)="sortTableContents('name')">названию</button>
-  <button (click)="sortTableContents('organization')">организации</button>
+  <div class="buttons">
+    <button (click)="sortTableContents('state')">состоянию</button>
+    <button (click)="sortTableContents('ID')">ID</button>
+    <button (click)="sortTableContents('name')">названию</button>
+    <button (click)="sortTableContents('organization')">организации</button>
+  </div>
 </div>
 
