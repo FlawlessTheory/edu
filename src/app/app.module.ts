@@ -20,6 +20,7 @@ import { InstanceTabTableComponent } from './components/instance-tab/instance-ta
 import { InstanceTabSidebarComponent } from './components/instance-tab/instance-tab-sidebar/instance-tab-sidebar.component';
 import { InstanceTabSortOptionsComponent } from './components/instance-tab/instance-tab-sort-options/instance-tab-sort-options.component';
 import { InstanceTabInputFormComponent } from './components/instance-tab/instance-tab-input-form/instance-tab-input-form.component';
+import { DefinitionTabDetailedInfoComponent } from './components/definition-tab/definition-tab-table/definition-tab-detailed-info/definition-tab-detailed-info.component';
 
 @NgModule({
             declarations: [
@@ -35,7 +36,8 @@ import { InstanceTabInputFormComponent } from './components/instance-tab/instanc
               InstanceTabTableComponent,
               InstanceTabSidebarComponent,
               InstanceTabSortOptionsComponent,
-              InstanceTabInputFormComponent
+              InstanceTabInputFormComponent,
+              DefinitionTabDetailedInfoComponent
             ],
             imports: [
               BrowserModule,
