@@ -2,7 +2,12 @@ div.forPadding {
   padding-left: 10px;
 }
 
-div.labelsAndButton {
+div.inputsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+div.labels {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -15,9 +20,15 @@ div.inputs {
   width: 250px;
 }
 
-form {
+div.buttons {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
 }
 
 input {
@@ -27,4 +38,8 @@ input {
 
 label {
   margin-bottom: 10px;
+}
+
+button {
+  margin-left: 5px;
 }

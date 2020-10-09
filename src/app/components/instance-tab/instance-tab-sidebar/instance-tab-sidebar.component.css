@@ -1,13 +1,23 @@
 div {
   display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  padding-right: 10px;
+}
+
+div.left {
+  display: flex;
   flex-direction: column;
   width: 125px;
-  padding-right: 10px;
-  border-right: black solid 1px;
 }
 
 button {
-  width: inherit;
   padding: 5px;
   margin-top: 5px;
+  height: 123px;
+}
+
+button.left {
+  height: auto;
+  width: inherit;
 }

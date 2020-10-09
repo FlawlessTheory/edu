@@ -1,4 +1,12 @@
 <div>
-  <button title="Приостановить процесс">Приостановить процесс</button>
-  <button title="Изменить приоритеты для всех работ данного процесса">Изменить приоритеты для всех работ данного процесса</button>
+  <div class="left" *ngIf="!isFolded">
+    <button class="left" title="Приостановить процесс">Приостановить процесс</button>
+    <button class="left" title="Изменить приоритеты для всех работ данного процесса">Изменить приоритеты для всех работ данного
+      процесса
+    </button>
+  </div>
+
+  <button *ngIf="!isFolded" (click)="fold()"><</button>
+  <button *ngIf="isFolded" (click)="unfold()">></button>
 </div>
+
