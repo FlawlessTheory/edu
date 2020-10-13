@@ -12,6 +12,7 @@ import { TabService } from 'src/app/services/tab.service';
            })
 export class DefinitionTabInputFormComponent {
   formGroup: FormGroup;
+  chagesSaved = false;
 
   constructor(private tabService: TabService,
               private definitionService: ProcessDefinitionService,
@@ -20,10 +21,10 @@ export class DefinitionTabInputFormComponent {
     this.tabService.lockCurrentTab();
 
     this.formGroup = this.formBuilder.group({
-                             ID: ['', [Validators.required, Validators.minLength(5)]],
-                             name: ['', [Validators.required, Validators.minLength(5)]],
-                             organization: ''
-                           });
+                                              ID: ['', [Validators.required, Validators.minLength(5)]],
+                                              name: ['', [Validators.required, Validators.minLength(5)]],
+                                              organization: ''
+                                            });
   }
 
   createProcessDefinition(): void {
@@ -34,6 +35,8 @@ export class DefinitionTabInputFormComponent {
       const processDefinition = new ProcessDefinition('прямо из киберпечи', ID, name, 1, organization);
 
       this.definitionService.addProcessDefinition(processDefinition);
+
+      this.chagesSaved = true;
 
       this.close();
     } else {

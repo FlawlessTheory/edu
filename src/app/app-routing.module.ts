@@ -8,13 +8,14 @@ import { DefinitionTabInputFormComponent } from 'src/app/components/definition-t
 import { InstanceTabInputFormComponent } from 'src/app/components/instance-tab/instance-tab-input-form/instance-tab-input-form.component';
 import { InstanceTabTableComponent } from 'src/app/components/instance-tab/instance-tab-table/instance-tab-table.component';
 import { DefinitionTabDetailedInfoComponent } from 'src/app/components/definition-tab/definition-tab-table/definition-tab-detailed-info/definition-tab-detailed-info.component';
+import { InputGuard } from 'src/app/guards/input.guard';
 
 const routes: Routes = [
   {
     path: 'definitions', component: DefinitionTabComponent,
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'view' },
-      { path: 'add', component: DefinitionTabInputFormComponent },
+      { path: 'add', component: DefinitionTabInputFormComponent, canDeactivate: [InputGuard] },
       { path: 'view', component: DefinitionTabTableComponent },
       { path: 'view/detailed', component: DefinitionTabDetailedInfoComponent }
     ]
