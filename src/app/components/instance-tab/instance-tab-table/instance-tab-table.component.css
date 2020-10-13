@@ -1,0 +1,31 @@
+div {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  border-left: black solid 1px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  padding: 3px;
+  border: black solid 1px;
+}
+
+td.state {
+  width: 100px;
+}
+
+td.ID {
+  width: 250px;
+}
+
+td.long {
+  width: 300px;
+}
+
+td.short {
+  width: 100px;
+}

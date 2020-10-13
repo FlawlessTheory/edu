@@ -1,0 +1,23 @@
+div {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  padding-right: 10px;
+}
+
+div.left {
+  display: flex;
+  flex-direction: column;
+  width: 125px;
+}
+
+button {
+  padding: 5px;
+  margin-top: 5px;
+  height: 165px;
+}
+
+button.left {
+  height: auto;
+  width: inherit;
+}

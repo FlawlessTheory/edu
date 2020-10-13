@@ -1,13 +1,7 @@
-div {
+iv {
   display: flex;
   flex-direction: column;
   padding-left: 10px;
-  border-left: black solid 1px;
-}
-
-b {
-  font-size: 20px;
-  align-self: center;
 }
 
 table {

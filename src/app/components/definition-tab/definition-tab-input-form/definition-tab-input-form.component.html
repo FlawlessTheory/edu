@@ -1,15 +1,22 @@
-<div>
+<div class="forPadding">
   <form (submit)="createProcessDefinition()" [formGroup]="formGroup">
-    <div>
-      <label>Идентификатор схемы: <input type="text" formControlName="ID"></label>
-    </div>
-    <div>
-      <label>Название: <input type="text" formControlName="name"></label>
-    </div>
-    <div>
-      <label>Организация: <input type="text" formControlName="organization"></label>
+    <div class="inputsContainer">
+      <div class="labels">
+        <label>Идентификатор схемы:</label>
+        <label>Название:</label>
+        <label>Организация:</label>
+      </div>
+
+      <div class="inputs">
+        <input type="text" formControlName="ID">
+        <input type="text" formControlName="name">
+        <input type="text" formControlName="organization">
+      </div>
     </div>
 
-    <button type="submit">Создать</button>
+    <div class="buttons">
+      <button type="submit">Создать</button>
+      <button (click)="close()">Отмена</button>
+    </div>
   </form>
 </div>

@@ -1,7 +1,13 @@
 <div>
-  <button (click)="onCreateProcessDefinitionButtonClicked()">Создать</button>
-  <button disabled>Редактировать</button>
-  <button disabled>Загрузить</button>
-  <button disabled>Удалить</button>
-  <button disabled>Загрузить сборку</button>
+  <div class="left" *ngIf="!isFolded">
+    <button class="left" (click)="onCreateProcessDefinitionButtonClicked()">Создать</button>
+    <button class="left" disabled>Редактировать</button>
+    <button class="left" disabled>Загрузить</button>
+    <button class="left" disabled>Удалить</button>
+    <button class="left" disabled>Загрузить сборку</button>
+  </div>
+
+
+  <button *ngIf="!isFolded" (click)="fold()"><</button>
+  <button *ngIf="isFolded" (click)="unfold()">></button>
 </div>
