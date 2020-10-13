@@ -16,7 +16,7 @@ const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'view' },
       { path: 'add', component: DefinitionTabInputFormComponent },
       { path: 'view', component: DefinitionTabTableComponent },
-      { path: 'view/detailed', component: DefinitionTabDetailedInfoComponent }
+      { path: 'detailed', component: DefinitionTabDetailedInfoComponent }
     ]
   },
   {
